@@ -1,0 +1,117 @@
+@keyframes slideIn {
+    0%{
+        opacity: 0;
+        transform:translate(0px,-20px);
+    }
+    50%{
+        opacity: 0.2;
+        
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0px,0px);
+    }
+}
+.m-top-menu{
+    height: 68px;
+    display: flex;
+    align-items: center;
+    *,*::after{
+        transition: all 200ms ease-in;
+    }
+    >.nav-item{
+        height: 100%;
+        position: relative;
+        margin:0 20px;
+        >span{
+            height: 100%;
+            padding:0;
+            display: flex;
+            line-height: 100%;
+            align-items: center;
+            color:#fff;
+            font-size: 14px;
+            justify-content: center;
+            
+            .dropdown-icon{
+                background: url("./drop.svg") no-repeat;
+                background-size: 12px;
+                width: 12px;
+                height: 10px;
+                margin-left:5px;
+                transform: rotate(180deg);
+                transform-origin: 50% 50%;
+                cursor: pointer;
+            }
+            >a{
+                line-height: 70px;
+                display: block;
+            }
+        }
+        &::after{
+            content: ' ';
+            height: 3px;
+            background-color: rgba(65,138,255,1);
+            display: block;
+            width: 100%;
+            transform-origin: center;
+            transform:scale(0);
+        }
+        &:hover,&.active{
+            &::after{
+                transform:scale(1);
+            }
+            >span{
+                font-weight: 600;
+            }
+        }
+        &:hover{
+            
+            .dropdown-icon{
+                transform: rotate(0deg);
+            }
+            >.nav-children{
+                display: flex;
+                animation-name: slideIn;
+                animation-duration:200ms;
+                animation-fill-mode:backwards;
+            }
+           
+        }
+        >.nav-children{
+            position: absolute;
+            top:calc(100% + 3px);
+            left:0px;
+            padding:5px 0;
+            background-color: rgba(11,10,58,0.9);
+            display: none;
+            min-width: 150px;
+            flex-direction: column;
+            overflow: hidden;
+        }
+    }
+    .sub-item{
+        >span{
+            padding:8px 10px;
+            color:#fff;
+            font-size: 14px;
+            font-weight: 500;
+            display: block;
+        }
+        .sub-children{
+
+        }
+    }
+    .menu-item{
+        >span{
+            padding:8px 26px;
+            color:#fff;
+            font-size: 14px;
+            display: block;
+            &:hover,&.active{
+                background-color: rgba(18,107,251,1);
+            }
+        }
+    }
+    
+}
